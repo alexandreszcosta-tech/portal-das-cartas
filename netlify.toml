@@ -1,0 +1,6 @@
+# Configuração de deploy no Netlify
+# A página é estática e mora na pasta /public — sem etapa de build.
+
+[build]
+  publish = "public"
+  command = "echo 'Site estatico - sem build'"
