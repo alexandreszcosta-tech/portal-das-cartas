@@ -15,6 +15,34 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
+<!-- ====================== META PIXEL ====================== -->
+<script>
+  // Gera/recupera um ID único do visitante (o "protocolo").
+  // Ele casa o clique da página <-> a conversa no WhatsApp <-> a venda.
+  function pdcGetEID(){
+    try{
+      var k='pdc_eid', v=localStorage.getItem(k);
+      if(!v){ v = Date.now().toString(36) + Math.random().toString(36).slice(2,8); localStorage.setItem(k, v); }
+      return v;
+    }catch(e){ return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
+  }
+  window.PDC_EID = pdcGetEID();
+
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1491476778120980', { external_id: window.PDC_EID });
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1491476778120980&ev=PageView&noscript=1"/></noscript>
+<!-- ==================== FIM META PIXEL ==================== -->
+
 <style>
   :root{
     --vermelho:#a71c1c;
@@ -376,12 +404,24 @@
 
 <script>
   /* ============================================================
-     CONFIGURAÇÃO — LINK DO WHATSAPP
-     Link direto de "conversar" do Portal das Cartas.
+     CONFIGURAÇÃO — WHATSAPP + RASTREIO
+     Número: +55 31 97523-6132
+     A mensagem carrega o "protocolo" (window.PDC_EID). O SuperZapp
+     lê esse protocolo na 1ª mensagem e devolve como external_id
+     nos eventos (Lead/Purchase) da CAPI -> casa clique e venda.
   ============================================================ */
-  var WHATSAPP_LINK = "https://wa.me/message/AW7JRR372LD7D1";
+  var WHATSAPP_NUMERO = "5531975236132";
+  var SAUDACAO = "Olá, gostaria de saber mais sobre a Consulta Completa.";
 
-  document.querySelectorAll("[data-zap]").forEach(function(a){ a.href = WHATSAPP_LINK; });
+  var mensagem = SAUDACAO + " (protocolo: " + window.PDC_EID + ")";
+  var link = "https://wa.me/" + WHATSAPP_NUMERO + "?text=" + encodeURIComponent(mensagem);
+
+  document.querySelectorAll("[data-zap]").forEach(function(a){
+    a.href = link;
+    a.addEventListener("click", function(){
+      if(window.fbq){ fbq("track", "Contact"); }
+    });
+  });
 
   var floatCta = document.getElementById("floatCta");
   window.addEventListener("scroll", function(){
