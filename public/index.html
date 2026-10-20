@@ -42,6 +42,34 @@
     return pdcNewEID();
   })();
 
+  // Envia ao servidor (so com consentimento) os identificadores do navegador
+  // ligados ao protocolo: melhora a correspondencia da compra na Meta.
+  var PDC_TRACK_URL = 'https://web-production-af2ce.up.railway.app/track';
+  function pdcReadCookie(n){
+    var m = document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]*)'));
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+  function pdcFbc(){
+    var c = pdcReadCookie('_fbc');
+    if(c) return c;
+    try{
+      var saved = localStorage.getItem('pdc_fbc');
+      var id = new URLSearchParams(window.location.search).get('fbclid');
+      if(id){ saved = 'fb.1.' + Date.now() + '.' + id; localStorage.setItem('pdc_fbc', saved); }
+      return saved || '';
+    }catch(e){ return ''; }
+  }
+  function pdcSendTrack(){
+    try{
+      var body = JSON.stringify({ eid: window.PDC_EID, fbc: pdcFbc(), fbp: pdcReadCookie('_fbp') });
+      if(navigator.sendBeacon){
+        navigator.sendBeacon(PDC_TRACK_URL, new Blob([body], { type: 'text/plain' }));
+      } else {
+        fetch(PDC_TRACK_URL, { method: 'POST', body: body, keepalive: true, mode: 'no-cors' });
+      }
+    }catch(e){}
+  }
+
   window.pdcTrackingLoaded = false;
   function pdcLoadTracking(){
     if(window.pdcTrackingLoaded) return;
@@ -514,7 +542,7 @@
     var href = pdcLink(granted);
     if(granted && window.fbq){
       fbq("track", "Contact");
-      setTimeout(function(){ window.location.href = href; }, 800); // tempo pro evento sair
+      setTimeout(function(){ pdcSendTrack(); window.location.href = href; }, 800); // tempo pro evento sair
     } else {
       window.location.href = href;
     }
