@@ -429,7 +429,8 @@
     <div>Portal das Cartas — Hana © 2026. Todos os direitos reservados.</div>
     <div class="links">
       <a href="/politica-de-privacidade.html">Política de Privacidade</a> &nbsp;•&nbsp;
-      <a href="/termos.html">Termos de Uso</a>
+      <a href="/termos.html">Termos de Uso</a> &nbsp;•&nbsp;
+      <a href="#" id="pdcPrefs">Preferências de cookies</a>
     </div>
   </div>
 </footer>
@@ -519,6 +520,25 @@
   pdcModal.querySelectorAll("[data-go]").forEach(function(b){
     b.addEventListener("click", function(){ pdcApply(b.getAttribute("data-go")); pdcGoWhatsApp(); });
   });
+
+  // Rodapé: reabrir o aviso para mudar a escolha
+  var pdcPrefs = document.getElementById("pdcPrefs");
+  if(pdcPrefs){
+    pdcPrefs.addEventListener("click", function(ev){
+      ev.preventDefault();
+      var tinhaAceitado = pdcGetConsent() === "granted";
+      try{ localStorage.removeItem("pdc_consent"); }catch(e){}
+      if(tinhaAceitado){
+        // para parar o rastreio já carregado, recarrega a página sem escolha salva
+        try{ localStorage.removeItem("pdc_eid"); localStorage.removeItem("pdc_fbc"); }catch(e){}
+        window.location.reload();
+        return;
+      }
+      pdcCookie.classList.add("show");
+      document.body.classList.add("pdc-banner");
+      pdcUpdateLinks();
+    });
+  }
 
   pdcUpdateLinks();
   document.querySelectorAll("[data-zap]").forEach(function(a){
