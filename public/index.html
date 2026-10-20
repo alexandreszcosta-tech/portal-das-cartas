@@ -472,13 +472,13 @@
      nos eventos (Lead/Purchase) da CAPI -> casa clique e venda.
   ============================================================ */
   var WHATSAPP_NUMERO = "5531975236132";
-  var SAUDACAO = "Olá, gostaria de saber mais sobre a Consulta Completa.";
+  var SAUDACAO = "Olá! Quero realizar minha leitura individual.";
 
   // Com consentimento: mensagem com protocolo. Sem consentimento: sem protocolo.
   function pdcLink(comProtocolo){
     var mensagem = comProtocolo
-      ? SAUDACAO + " 🔮 Protocolo de atendimento: " + window.PDC_EID
-      : SAUDACAO + " 🔮";
+      ? SAUDACAO + " Protocolo de atendimento: " + window.PDC_EID
+      : SAUDACAO;
     return "https://wa.me/" + WHATSAPP_NUMERO + "?text=" + encodeURIComponent(mensagem);
   }
 
