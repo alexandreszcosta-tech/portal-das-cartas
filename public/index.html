@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Consulta Completa de Tarot Amoroso — Hana | Portal das Cartas</title>
-<meta name="description" content="O Tarot mostra tudo que ele esconde de você: sentimentos, pensamentos, amores antigos. Faça sua Consulta Completa de Tarot Amoroso com a Hana." />
+<title>Leitura Individual com a Hana | Portal das Cartas</title>
+<meta name="description" content="Você não chegou aqui por acaso! Me chame no WhatsApp e realize sua leitura individual de tarot com a Hana." />
 
 <!-- OpenGraph (compartilhamento / anúncio) -->
-<meta property="og:title" content="O Tarot mostra tudo que ele esconde de você" />
-<meta property="og:description" content="Consulta Completa de Tarot Amoroso com a Hana — Portal das Cartas." />
+<meta property="og:title" content="Você não chegou aqui por acaso!" />
+<meta property="og:description" content="Leitura individual de tarot com a Hana — Portal das Cartas." />
 <meta property="og:type" content="website" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -102,14 +102,14 @@
 
 <style>
   :root{
-    --vermelho:#a71c1c;
-    --vermelho-escuro:#6e0f0f;
-    --vermelho-claro:#c62b2b;
+    --roxo:#6d4ea2;
+    --roxo-escuro:#3f2a66;
+    --roxo-claro:#8b6cc4;
     --branco:#ffffff;
     --dourado:#e4c078;
     --dourado-escuro:#b58a3c;
-    --texto-escuro:#3a1414;
-    --texto-suave:#6b4a4a;
+    --texto-escuro:#2a1f3d;
+    --texto-suave:#5c5070;
     --zap:#25d366;
     --zap-escuro:#1da851;
     --sombra:0 10px 30px rgba(0,0,0,.35);
@@ -120,7 +120,7 @@
   body{
     font-family:'Poppins',system-ui,sans-serif;
     color:var(--branco);
-    background:var(--vermelho-escuro);
+    background:var(--roxo-escuro);
     line-height:1.6;
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
@@ -133,32 +133,32 @@
   .bold{font-weight:700}
 
   /* ======================================================
-     TEMAS ALTERNADOS (vermelho / branco)
+     TEMAS ALTERNADOS (roxo / branco)
   ====================================================== */
   section{position:relative;padding:56px 0}
 
-  /* --- TEMA VERMELHO (texto branco) --- */
-  .tema-vermelho{
-    background:linear-gradient(180deg,var(--vermelho) 0%,var(--vermelho-escuro) 100%);
+  /* --- TEMA ROXO (texto branco) --- */
+  .tema-roxo{
+    background:linear-gradient(180deg,var(--roxo) 0%,var(--roxo-escuro) 100%);
     color:var(--branco);
   }
-  .tema-vermelho .sec-title{color:var(--branco)}
-  .tema-vermelho .sec-title .gold{color:var(--dourado)}
-  .tema-vermelho .divider{background:var(--dourado)}
-  .tema-vermelho .destaque-num{color:var(--dourado)}
-  .tema-vermelho .destaque-frase{color:var(--dourado)}
+  .tema-roxo .sec-title{color:var(--branco)}
+  .tema-roxo .sec-title .gold{color:var(--dourado)}
+  .tema-roxo .divider{background:var(--dourado)}
+  .tema-roxo .destaque-num{color:var(--dourado)}
+  .tema-roxo .destaque-frase{color:var(--dourado)}
 
   /* --- TEMA BRANCO (texto escuro) --- */
   .tema-branco{
     background:var(--branco);
     color:var(--texto-escuro);
   }
-  .tema-branco .sec-title{color:var(--vermelho)}
+  .tema-branco .sec-title{color:var(--roxo)}
   .tema-branco .sec-title .gold{color:var(--dourado-escuro)}
   .tema-branco .divider{background:var(--dourado-escuro)}
-  .tema-branco .destaque-num{color:var(--vermelho)}
-  .tema-branco .destaque-frase{color:var(--vermelho)}
-  .tema-branco .card{background:#fbf5ec;border-color:rgba(167,28,28,.18)}
+  .tema-branco .destaque-num{color:var(--roxo)}
+  .tema-branco .destaque-frase{color:var(--roxo)}
+  .tema-branco .card{background:#fbf5ec;border-color:rgba(109,78,162,.18)}
   .tema-branco .card h3{color:var(--texto-escuro)}
   .tema-branco .card p{color:var(--texto-suave)}
   .tema-branco .lista-check li,.tema-branco .lista-x li{color:var(--texto-escuro);border-color:rgba(0,0,0,.08)}
@@ -168,9 +168,14 @@
   /* ---------- HERO ---------- */
   .hero{
     text-align:center;
-    background:radial-gradient(120% 90% at 50% 0%, var(--vermelho-claro) 0%, var(--vermelho) 45%, var(--vermelho-escuro) 100%);
+    background:radial-gradient(120% 90% at 50% 0%, var(--roxo-claro) 0%, var(--roxo) 45%, var(--roxo-escuro) 100%);
     padding-top:40px;
+    min-height:86vh;min-height:86svh;display:flex;align-items:center;
   }
+  .hero .wrap{padding-top:10px;padding-bottom:10px}
+  .hero h1{font-size:clamp(30px,8.5vw,42px) !important}
+  .hero .sub{font-size:17px !important;margin-bottom:30px !important}
+  .tema-roxo.faq{background:linear-gradient(180deg,var(--roxo-escuro) 0%,#2a1d45 100%)}
   .brand{
     font-family:'Cinzel',serif;font-weight:600;font-size:15px;letter-spacing:.25em;
     text-transform:uppercase;color:var(--dourado);margin-bottom:26px;
@@ -278,7 +283,7 @@
   .float-cta.show{opacity:1;pointer-events:auto}
 
   /* ---------- RODAPÉ ---------- */
-  footer{background:#4a0a0a;color:#fff;text-align:center;padding:34px 0 90px;font-size:12px;opacity:.9}
+  footer{background:#2a1d45;color:#fff;text-align:center;padding:34px 0 90px;font-size:12px;opacity:.9}
   footer a{color:var(--dourado);text-decoration:none}
   footer .links{margin-top:10px}
 
@@ -286,7 +291,7 @@
 
   /* ===== Aviso de cookies / janela de consentimento ===== */
   .pdc-cookie{position:fixed;left:12px;right:12px;bottom:12px;z-index:9999;max-width:560px;margin:0 auto;
-    background:#2a0909;color:#f3e7d3;border:1px solid rgba(212,175,95,.45);border-radius:14px;
+    background:#24183a;color:#f3e7d3;border:1px solid rgba(212,175,95,.45);border-radius:14px;
     padding:14px 16px;font:400 13.5px/1.45 Poppins,system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.45);display:none}
   .pdc-cookie.show{display:block}
   .pdc-cookie a{color:#d4af5f}
@@ -297,7 +302,7 @@
   body.pdc-banner .float-cta{bottom:140px}
   .pdc-modal{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:18px}
   .pdc-modal.show{display:flex}
-  .pdc-modal .box{background:#2a0909;color:#f3e7d3;border:1px solid rgba(212,175,95,.45);border-radius:16px;
+  .pdc-modal .box{background:#24183a;color:#f3e7d3;border:1px solid rgba(212,175,95,.45);border-radius:16px;
     max-width:420px;width:100%;padding:22px 18px;text-align:center;font:400 14.5px/1.5 Poppins,system-ui,sans-serif}
   .pdc-modal h3{font:600 18px Cinzel,serif;color:#d4af5f;margin:0 0 8px}
   .pdc-modal a{color:#d4af5f}
@@ -307,37 +312,16 @@
 </head>
 <body>
 
-<!-- ============ 1ª DOBRA — HERO (VERMELHO) ============ -->
-<section class="hero tema-vermelho">
+<!-- ============ 1ª DOBRA — CHAMADA (ROXO) ============ -->
+<section class="hero tema-roxo">
   <div class="wrap">
     <div class="brand">✦ Portal das Cartas ✦</div>
-    <h1>O Tarot <span class="gold">MOSTRA TUDO</span> que ele esconde de você</h1>
-    <p class="sub">Sentimentos, pensamentos, amores antigos, situações… Converse comigo e entenda como as cartas e os guias espirituais podem te ajudar na sua vida amorosa.</p>
-
-    <div class="oferta-box">
-      <div class="titulo">Toque no botão abaixo e receba</div>
-      <ul class="beneficios">
-        <li>Sua 1ª Consulta Completa de R$322,38 por R$160</li>
-        <li>Direcionamento espiritual personalizado</li>
-        <li>Todas as respostas que você precisa</li>
-      </ul>
-      <a class="cta" data-zap href="#">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.988-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.151-.174.2-.298.3-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-        Realizar a Consulta Completa por R$160
-      </a>
-    </div>
-
-    <!-- FOTO DA HANA -->
-    <div class="foto-frame" style="margin-top:30px">
-      <img src="images/hana.jpg" alt="Hana — Portal das Cartas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="ph" style="display:none;min-height:340px">[ salve a foto da Hana em images/hana.jpg ]</div>
-    </div>
-
-    <!-- PRINT DO INSTAGRAM -->
-    <div class="foto-frame ig" style="margin-top:30px">
-      <img src="images/ig-portal.png" alt="Instagram @oportaldascartas — 183 mil seguidores" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="ph print" style="display:none">[ salve o print do Instagram em images/ig-portal.png ]</div>
-    </div>
+    <h1>Você <span class="gold">não chegou aqui</span> por acaso!</h1>
+    <p class="sub">Clique no botão e me chame no WhatsApp para realizar sua leitura individual.</p>
+    <a class="cta" data-zap href="#">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.988-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.151-.174.2-.298.3-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      Realizar minha consulta
+    </a>
   </div>
 </section>
 
@@ -345,106 +329,56 @@
 <section class="tema-branco">
   <div class="wrap">
     <div class="destaque-num">+7.798</div>
-    <h2 class="sec-title">mulheres já pegaram o controle de suas vidas amorosas de volta através da minha <span class="gold">Consulta Completa</span></h2>
+    <h2 class="sec-title">pessoas já <span class="gold">confiaram</span> no meu trabalho!</h2>
     <div class="divider"></div>
 
     <div class="foto-frame" style="margin-bottom:16px">
-      <img src="images/depoimento-1.jpg" alt="Depoimento de cliente — Consulta Completa" loading="lazy">
+      <img src="images/depoimento-1.jpg" alt="Depoimento de cliente" loading="lazy">
     </div>
     <div class="foto-frame" style="margin-bottom:16px">
-      <img src="images/depoimento-2.jpg" alt="Depoimento de cliente — Consulta Completa" loading="lazy">
+      <img src="images/depoimento-2.jpg" alt="Depoimento de cliente" loading="lazy">
     </div>
     <div class="foto-frame">
-      <img src="images/depoimento-3.jpg" alt="Depoimento de cliente — Consulta Completa" loading="lazy">
+      <img src="images/depoimento-3.jpg" alt="Depoimento de cliente" loading="lazy">
     </div>
   </div>
 </section>
 
-<!-- ============ 3ª DOBRA — O QUE VOCÊ RECEBE (VERMELHO) ============ -->
-<section class="tema-vermelho">
-  <div class="wrap">
-    <h2 class="sec-title">O que você vai <span class="gold">receber</span></h2>
-    <div class="divider"></div>
-
-    <div class="card"><h3>Análise completa da sua vida amorosa</h3></div>
-    <div class="card"><h3>Direito a 10 perguntas</h3></div>
-    <div class="card"><h3>Previsão amorosa para os próximos 12 meses</h3></div>
-    <div class="card"><h3>3 Banhos Energéticos indicados pelo Oráculo</h3></div>
-    <div class="card"><h3>Entrega rápida em até 2 horas</h3></div>
-  </div>
-</section>
-
-<!-- ============ 4ª DOBRA — SE VOCÊ QUER SABER (BRANCO) ============ -->
-<section class="tema-branco">
-  <div class="wrap">
-    <h2 class="sec-title">Se você quer <span class="gold">saber:</span></h2>
-    <div class="divider"></div>
-
-    <ul class="lista-check">
-      <li>O que ele realmente sente por você e não te conta</li>
-      <li>O que ele faz quando você não está por perto</li>
-      <li>Se tem outra pessoa no caminho dele atrapalhando a relação de vocês</li>
-      <li>Quais são os conselhos das cartas e dos guias espirituais para você</li>
-    </ul>
-
-    <p class="destaque-frase">A Consulta Completa é para você!</p>
-
-    <a class="cta" data-zap href="#">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.988-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.151-.174.2-.298.3-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-      Realizar a Consulta Completa por R$160
-    </a>
-  </div>
-</section>
-
-<!-- ============ 5ª DOBRA — QUEM SOU EU (VERMELHO) ============ -->
-<section class="tema-vermelho sobre">
+<!-- ============ 3ª DOBRA — QUEM SOU EU (ROXO) ============ -->
+<section class="tema-roxo sobre">
   <div class="wrap">
     <h2 class="sec-title">Quem sou <span class="gold">eu</span></h2>
     <div class="divider"></div>
 
     <!-- FOTO DA HANA -->
     <div class="foto-frame">
-      <img src="images/hana.jpg" alt="Hana — Portal das Cartas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <img src="images/hana.jpg" alt="Hana — Portal das Cartas" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="ph" style="display:none;min-height:340px">[ foto da Hana — images/hana.jpg ]</div>
     </div>
 
     <p class="oi">Muito prazer, eu sou a Hana! 🔮</p>
-    <p>Sou fundadora do <span class="gold bold">Portal das Cartas</span>, com mais de <strong>10 anos de experiência</strong> e mais de <strong>7.798 mulheres impactadas</strong> em todo o mundo pelas minhas leituras.</p>
-    <p>Em 2016 decidi escutar e atender ao chamado que a espiritualidade tinha pra mim: ajudar mulheres a pegarem (de volta) o controle de suas vidas amorosas, mostrando realmente o que ele sente e não fala, tudo que ele faz quando você não está por perto e não conta, e revelando se há outras pessoas no caminho dele, além de você.</p>
-    <p>O meu intuito com a Consulta Completa é te direcionar, para você saber exatamente o que precisa fazer…</p>
-    <p>Pode ter certeza que você não chegou aqui por acaso. Se quiser realizar sua Consulta Completa, é só clicar no botão abaixo!</p>
+    <p>Sou fundadora do <span class="gold bold">Portal das Cartas</span>, com mais de <strong>10 anos de experiência</strong> e mais de <strong>7.798 pessoas impactadas</strong> em todo o mundo pelas minhas leituras.</p>
+    <p>Desde muito nova, a conexão com a espiritualidade me acompanhou, e desde o primeiro contato eu soube que queria fazer isso pro resto da minha vida!</p>
+    <p>Ajudar as pessoas com o tarot é a minha missão de vida: levar a luz da espiritualidade para todos que confiarem no meu trabalho!</p>
+    <p>Não faço promessas mágicas, não acredito em fórmulas prontas. Acredito na escuta, na entrega e na verdade.</p>
+    <p>Você talvez precise de respostas e direção e, se quiser, eu estou aqui para te ajudar, de coração e espírito abertos.</p>
 
     <a class="cta" data-zap href="#">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.988-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.151-.174.2-.298.3-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-      Realizar a Consulta Completa por R$160
+      Realizar minha consulta
     </a>
   </div>
 </section>
 
-<!-- ============ 6ª DOBRA — NÃO É PRA VOCÊ (BRANCO) ============ -->
-<section class="tema-branco">
-  <div class="wrap">
-    <h2 class="sec-title">Essa consulta <span class="gold">não é pra você</span> que</h2>
-    <div class="divider"></div>
-
-    <ul class="lista-x">
-      <li>Não tem dúvidas sobre sua vida amorosa</li>
-      <li>Não quer saber o que ele realmente sente por você e não te conta</li>
-      <li>Não quer saber o que ele faz quando você não está por perto</li>
-      <li>Não quer conselho das Cartas e dos Guias Espirituais</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============ 7ª DOBRA — FAQ (VERMELHO) ============ -->
-<section class="tema-vermelho">
+<!-- ============ 4ª DOBRA — FAQ (ROXO ESCURO) ============ -->
+<section class="tema-roxo faq">
   <div class="wrap">
     <h2 class="sec-title">Dúvidas <span class="gold">Frequentes</span></h2>
     <div class="divider"></div>
 
     <details>
       <summary>Em quanto tempo eu recebo?</summary>
-      <div class="faq-body">A Consulta Completa é enviada em até 2 horas.</div>
+      <div class="faq-body">Todas as minhas leituras são enviadas em até 1 hora!</div>
     </details>
     <details>
       <summary>A Consulta é feita por vídeo?</summary>
@@ -457,7 +391,7 @@
 
     <a class="cta" data-zap href="#" style="margin-top:32px">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.988-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.151-.174.2-.298.3-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-      Realizar a Consulta Completa por R$160
+      Realizar minha consulta
     </a>
   </div>
 </section>
@@ -476,7 +410,7 @@
 <!-- ============ BOTÃO FLUTUANTE ============ -->
 <a class="cta float-cta" id="floatCta" data-zap href="#">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.988-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.151-.174.2-.298.3-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-  Fazer minha Consulta por R$160
+  Realizar minha consulta
 </a>
 
 <!-- ============ AVISO DE COOKIES ============ -->
