@@ -215,7 +215,9 @@
     max-width:420px;margin:26px auto 0;border-radius:18px;overflow:hidden;
     border:2px solid rgba(228,192,120,.55);box-shadow:var(--sombra);line-height:0;
   }
-  .foto-frame img{width:100%;display:block}
+  .foto-frame img{width:100%;height:auto;display:block}
+  .foto-sobre{max-width:360px}
+  .foto-sobre img{aspect-ratio:4/5;height:auto;object-fit:cover;object-position:center 40%}
   .foto-frame.ig{max-width:440px}
   .tema-branco .foto-frame{border-color:rgba(181,138,60,.55)}
 
@@ -377,8 +379,8 @@
     <div class="divider"></div>
 
     <!-- FOTO DA HANA -->
-    <div class="foto-frame">
-      <img src="images/hana-hero.jpg" alt="Hana — Portal das Cartas" width="720" height="960" loading="lazy">
+    <div class="foto-frame foto-sobre">
+      <img src="images/hana-hero.jpg" alt="Hana — Portal das Cartas" loading="lazy">
     </div>
 
     <p class="oi">Muito prazer, eu sou a Hana! 🔮</p>
