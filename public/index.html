@@ -15,43 +15,62 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-<!-- ====================== META PIXEL ====================== -->
+<!-- ============ RASTREIO COM CONSENTIMENTO (GDPR) ============ -->
 <script>
-  // Gera/recupera um ID único do visitante (o "protocolo").
-  // Ele casa o clique da página <-> a conversa no WhatsApp <-> a venda.
-  function pdcGetEID(){
-    try{
-      var k='pdc_eid', v=localStorage.getItem(k);
-      if(!v){ v = Date.now().toString(36) + Math.random().toString(36).slice(2,8); localStorage.setItem(k, v); }
-      return v;
-    }catch(e){ return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
-  }
-  window.PDC_EID = pdcGetEID();
+  /* Nada de pixel/Clarity antes do consentimento.
+     - "granted": carrega Meta Pixel (com o protocolo como external_id) + Clarity.
+     - "denied" : nada é carregado e a mensagem do WhatsApp vai SEM protocolo
+                  (assim a venda dessa pessoa não é enviada à Meta).
+     - sem resposta: aviso no rodapé; se clicar no botão do WhatsApp antes,
+                  abre a janela de escolha. */
+  var PDC_PIXEL_ID = '1491476778120980';
+  var PDC_CLARITY_ID = 'xxyl2dohpc';
 
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1491476778120980', { external_id: window.PDC_EID });
-  fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1491476778120980&ev=PageView&noscript=1"/></noscript>
-<!-- ==================== FIM META PIXEL ==================== -->
+  function pdcGetConsent(){ try{ return localStorage.getItem('pdc_consent'); }catch(e){ return null; } }
+  function pdcSetConsent(v){ try{ localStorage.setItem('pdc_consent', v); }catch(e){} }
+  function pdcNewEID(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,8); }
 
-<!-- ================ MICROSOFT CLARITY (mapa de calor) ================ -->
-<script type="text/javascript">
+  // Protocolo: só fica salvo no aparelho depois do consentimento.
+  window.PDC_EID = (function(){
+    if(pdcGetConsent() === 'granted'){
+      try{
+        var v = localStorage.getItem('pdc_eid');
+        if(!v){ v = pdcNewEID(); localStorage.setItem('pdc_eid', v); }
+        return v;
+      }catch(e){}
+    }
+    return pdcNewEID();
+  })();
+
+  window.pdcTrackingLoaded = false;
+  function pdcLoadTracking(){
+    if(window.pdcTrackingLoaded) return;
+    window.pdcTrackingLoaded = true;
+    try{ localStorage.setItem('pdc_eid', window.PDC_EID); }catch(e){}
+
+    // Meta Pixel
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', PDC_PIXEL_ID, { external_id: window.PDC_EID });
+    fbq('track', 'PageView');
+
+    // Microsoft Clarity (mapa de calor)
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xxyl2dohpc");
+    })(window, document, "clarity", "script", PDC_CLARITY_ID);
+  }
+
+  if(pdcGetConsent() === 'granted'){ pdcLoadTracking(); }
 </script>
-<!-- ============== FIM MICROSOFT CLARITY ============== -->
+<!-- ========== FIM RASTREIO COM CONSENTIMENTO ========== -->
 
 <style>
   :root{
@@ -236,6 +255,26 @@
   footer .links{margin-top:10px}
 
   @media(min-width:600px){section{padding:70px 0}}
+
+  /* ===== Aviso de cookies / janela de consentimento ===== */
+  .pdc-cookie{position:fixed;left:12px;right:12px;bottom:12px;z-index:9999;max-width:560px;margin:0 auto;
+    background:#2a0909;color:#f3e7d3;border:1px solid rgba(212,175,95,.45);border-radius:14px;
+    padding:14px 16px;font:400 13.5px/1.45 Poppins,system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.45);display:none}
+  .pdc-cookie.show{display:block}
+  .pdc-cookie a{color:#d4af5f}
+  .pdc-cookie .pdc-btns{display:flex;gap:10px;margin-top:10px}
+  .pdc-btn{flex:1;cursor:pointer;border:1px solid #d4af5f;background:transparent;color:#f3e7d3;
+    border-radius:10px;padding:10px 8px;font:600 14px Poppins,system-ui,sans-serif}
+  .pdc-btn:active{opacity:.8}
+  body.pdc-banner .float-cta{bottom:140px}
+  .pdc-modal{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:18px}
+  .pdc-modal.show{display:flex}
+  .pdc-modal .box{background:#2a0909;color:#f3e7d3;border:1px solid rgba(212,175,95,.45);border-radius:16px;
+    max-width:420px;width:100%;padding:22px 18px;text-align:center;font:400 14.5px/1.5 Poppins,system-ui,sans-serif}
+  .pdc-modal h3{font:600 18px Cinzel,serif;color:#d4af5f;margin:0 0 8px}
+  .pdc-modal a{color:#d4af5f}
+  .pdc-modal .pdc-btns{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+  .pdc-modal .pdc-btn{padding:13px 10px;font-size:15px}
 </style>
 </head>
 <body>
@@ -412,6 +451,28 @@
   Fazer minha Consulta por R$160
 </a>
 
+<!-- ============ AVISO DE COOKIES ============ -->
+<div class="pdc-cookie" id="pdcCookie" role="dialog" aria-live="polite">
+  Usamos cookies para medir de qual anúncio você veio e melhorar nossos anúncios.
+  <a href="/politica-de-privacidade.html">Política de privacidade</a>
+  <div class="pdc-btns">
+    <button class="pdc-btn" type="button" data-consent="granted">Aceitar</button>
+    <button class="pdc-btn" type="button" data-consent="denied">Recusar</button>
+  </div>
+</div>
+<div class="pdc-modal" id="pdcModal" role="dialog" aria-modal="true">
+  <div class="box">
+    <h3>Antes de seguir</h3>
+    Usamos cookies para medir de qual anúncio você veio.
+    Você pode aceitar ou recusar — nos dois casos, você segue direto para o WhatsApp.
+    <div><a href="/politica-de-privacidade.html">Política de privacidade</a></div>
+    <div class="pdc-btns">
+      <button class="pdc-btn" type="button" data-go="granted">Aceitar e ir para o WhatsApp</button>
+      <button class="pdc-btn" type="button" data-go="denied">Recusar e ir para o WhatsApp</button>
+    </div>
+  </div>
+</div>
+
 <script>
   /* ============================================================
      CONFIGURAÇÃO — WHATSAPP + RASTREIO
@@ -423,13 +484,59 @@
   var WHATSAPP_NUMERO = "5531975236132";
   var SAUDACAO = "Olá, gostaria de saber mais sobre a Consulta Completa.";
 
-  var mensagem = SAUDACAO + " 🔮 Protocolo de atendimento: " + window.PDC_EID;
-  var link = "https://wa.me/" + WHATSAPP_NUMERO + "?text=" + encodeURIComponent(mensagem);
+  // Com consentimento: mensagem com protocolo. Sem consentimento: sem protocolo.
+  function pdcLink(comProtocolo){
+    var mensagem = comProtocolo
+      ? SAUDACAO + " 🔮 Protocolo de atendimento: " + window.PDC_EID
+      : SAUDACAO + " 🔮";
+    return "https://wa.me/" + WHATSAPP_NUMERO + "?text=" + encodeURIComponent(mensagem);
+  }
 
+  var pdcCookie = document.getElementById("pdcCookie");
+  var pdcModal = document.getElementById("pdcModal");
+
+  function pdcApply(v){
+    pdcSetConsent(v);
+    if(v === "granted"){ pdcLoadTracking(); }
+    pdcCookie.classList.remove("show");
+    document.body.classList.remove("pdc-banner");
+    pdcModal.classList.remove("show");
+    pdcUpdateLinks();
+  }
+
+  function pdcUpdateLinks(){
+    var href = pdcLink(pdcGetConsent() === "granted");
+    document.querySelectorAll("[data-zap]").forEach(function(a){ a.href = href; });
+  }
+
+  function pdcGoWhatsApp(){
+    var granted = pdcGetConsent() === "granted";
+    var href = pdcLink(granted);
+    if(granted && window.fbq){
+      fbq("track", "Contact");
+      setTimeout(function(){ window.location.href = href; }, 800); // tempo pro evento sair
+    } else {
+      window.location.href = href;
+    }
+  }
+
+  // Aviso no rodapé (só se ainda não respondeu)
+  if(!pdcGetConsent()){ pdcCookie.classList.add("show"); document.body.classList.add("pdc-banner"); }
+  pdcCookie.querySelectorAll("[data-consent]").forEach(function(b){
+    b.addEventListener("click", function(){ pdcApply(b.getAttribute("data-consent")); });
+  });
+
+  // Janela de escolha (quando clica no WhatsApp sem ter respondido)
+  pdcModal.querySelectorAll("[data-go]").forEach(function(b){
+    b.addEventListener("click", function(){ pdcApply(b.getAttribute("data-go")); pdcGoWhatsApp(); });
+  });
+
+  pdcUpdateLinks();
   document.querySelectorAll("[data-zap]").forEach(function(a){
-    a.href = link;
-    a.addEventListener("click", function(){
-      if(window.fbq){ fbq("track", "Contact"); }
+    a.addEventListener("click", function(ev){
+      ev.preventDefault();
+      if(!pdcGetConsent()){ pdcModal.classList.add("show"); return; }
+      pdcGoWhatsApp();
     });
   });
 
